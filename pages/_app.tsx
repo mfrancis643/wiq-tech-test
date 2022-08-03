@@ -24,7 +24,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   const addToCart =
     ({ id, name, price }: Product) =>
     () => {
-      setBasket([...basket, { productId: id, name, price, quantity: 1 }]);
+      let existingIndex = basket.findIndex((item) => {
+          return item.productId == id
+        })
+
+      if (existingIndex === -1){
+        setBasket([...basket, { productId: id, name, price, quantity: 1 }]);
+      }
+      else {
+        let newBasket = basket;
+        newBasket[existingIndex].quantity++
+        setBasket([...newBasket])
+      }
     };
 
   const toggleBasketModal = () => setBasketVisible(!basketVisible);

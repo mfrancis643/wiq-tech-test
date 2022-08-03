@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { BasketContext } from '../pages/_app';
 
@@ -50,6 +50,8 @@ const BasketItemPrice = styled.div`
 
 export const Basket = () => {
   const { basket, toggleBasketModal } = useContext(BasketContext);
+
+  useEffect(()=>{console.log(basket)},[basket])
 
   return (
     <Background onClick={toggleBasketModal}>
