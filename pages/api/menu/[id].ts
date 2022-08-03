@@ -22,10 +22,12 @@ export default (
 ) => {
 
   const {id} = req.query
+  console.log('id')
+  console.log(id)
 
   try {
     res.status(200).json({
-    products: menus[id]
+    products: menus[id].products
     });
   }
   catch (e){
