@@ -4,16 +4,16 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { Product } from '../../types';
 
 export type ProductResponse = {
-  products: Array<Product>;
+  products?: Array<Product>;
+  error?: string;
 };
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ProductResponse>
 ) {
-  throw new Error('Internal Server Error');
-
-  res.status(200).json({
+  try {
+    res.status(200).json({
     products: [
       {
         id: 1,
@@ -46,5 +46,9 @@ export default function handler(
         price: 590,
       },
     ],
-  });
+    });
+  }
+  catch (e){
+    res.status(500).json({ error: "failed to load menu items"})
+  }
 }

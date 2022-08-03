@@ -45,6 +45,9 @@ const Menu: NextPage = () => {
               <p>{product.description}</p>
             </Card>
           ))}
+          {menuData?.error && (
+            <p>{menuData.error}</p>
+          )}
         </MenuSection>
 
         <Footer>Powered by wi-Q</Footer>
